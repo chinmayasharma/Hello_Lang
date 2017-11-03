@@ -11,10 +11,16 @@
     <string name="teacher">Teacher</string>
     <string name="student">Student</string>
     <string name="filter_users_button">Filter Users</string>
+    <string name="edit_profile_button">Edit Profile</string>
     <string name="language_selector">Language:</string>
     <string name="type_selector">User Type:</string>
     <string name="status_selector">Status:</string>
     <string name="none_item">None</string>
+    <string name="default_username">:username:</string>
+    <string name="default_language">:language:</string>
+    <string name="default_status">:status:</string>
+    <string name="default_type">:type:</string>
+    <string name="default_picture">:profile_picture:</string>
 
     <string-array name="languages">
         <item>@string/none_item</item>
