@@ -16,6 +16,8 @@
     <string name="type_selector">User Type:</string>
     <string name="status_selector">Status:</string>
     <string name="none_item">None</string>
+    <string name="clear_filters_button">Clear Filters</string>
+    <string name="apply_filters_button">Apply Filters</string>
     <string name="default_username">:username:</string>
     <string name="default_language">:language:</string>
     <string name="default_status">:status:</string>
