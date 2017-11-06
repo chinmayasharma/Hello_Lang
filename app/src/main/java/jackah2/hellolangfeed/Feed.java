@@ -24,6 +24,7 @@ public class Feed extends AppCompatActivity {
     Button filterUsersButton;
 
     public static final String USER_OBJECT = "user_object";
+    public static final String FILTER_OBJECT = "filter_object";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,14 @@ public class Feed extends AppCompatActivity {
         filterUsersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FilterChooser.class));
+                Intent intent = new Intent(getApplicationContext(), FilterChooser.class);
+
+                ArrayList<UserFilter> filter = new ArrayList<>();
+                filter.add(userFilter);
+
+                intent.putParcelableArrayListExtra(FILTER_OBJECT, filter);
+
+                startActivity(intent);
             }
         });
 
