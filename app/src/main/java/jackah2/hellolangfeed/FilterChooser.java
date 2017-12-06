@@ -5,24 +5,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class FilterChooser extends AppCompatActivity{
 
-    private TextView languageText, typeText, statusText;
     private Spinner languageSel, typeSel, statusSel;
-    private Button clearFilters, applyFilters;
 
     private SharedPreferences sharedPref;
 
     private static final String LANG_SEL_POS = "spinner_pos.lang";
     private static final String TYPE_SEL_POS = "spinner_pos.type";
     private static final String STAT_SEL_POS = "spinner_pos.stat";
-    private static final String PRER_FILE_NAME = "spinner_options";
+    private static final String PRER_FILE_NAME = "filter_spinner_options";
 
     private static final int DEF_POS = -1;
 
@@ -31,20 +27,12 @@ public class FilterChooser extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_chooser);
 
-        languageText = (TextView) findViewById(R.id.language_select_text);
-        typeText = (TextView) findViewById(R.id.user_type_select_text);
-        statusText = (TextView) findViewById(R.id.status_select_text);
-
         languageSel = (Spinner) findViewById(R.id.language_select_spinner);
         typeSel = (Spinner) findViewById(R.id.user_type_select_spinner);
         statusSel = (Spinner) findViewById(R.id.status_select_spinner);
 
-        clearFilters = (Button) findViewById(R.id.clear_filters_button);
-        applyFilters = (Button) findViewById(R.id.apply_filters_button);
-
-        languageText.setText(R.string.language_selector);
-        typeText.setText(R.string.type_selector);
-        statusText.setText(R.string.status_selector);
+        Button clearFilters = (Button) findViewById(R.id.clear_filters_button);
+        Button applyFilters = (Button) findViewById(R.id.apply_filters_button);
 
         languageSel.setAdapter(getAdapter(R.array.languages));
         typeSel.setAdapter(getAdapter(R.array.types));
@@ -59,67 +47,6 @@ public class FilterChooser extends AppCompatActivity{
         if (langSelPos != DEF_POS) languageSel.setSelection(langSelPos);
         if (typeSelPos != DEF_POS) typeSel.setSelection(typeSelPos);
         if (statSelPos != DEF_POS) statusSel.setSelection(statSelPos);
-
-
-        languageSel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) parent.getItemAtPosition(position);
-                Feed.getUserFilter().setLanguage(Language.match(item));
-
-                ((Feed) Feed.getContext()).updateFilter();
-
-                sharedPref = getApplicationContext().getSharedPreferences(PRER_FILE_NAME, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-
-                editor.putInt(LANG_SEL_POS, position);
-                editor.commit();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        typeSel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) parent.getItemAtPosition(position);
-                Feed.getUserFilter().setType(UserType.match(item));
-
-                ((Feed) Feed.getContext()).updateFilter();
-
-                sharedPref = getApplicationContext().getSharedPreferences(PRER_FILE_NAME, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-
-                editor.putInt(TYPE_SEL_POS, position);
-                editor.commit();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        statusSel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) parent.getItemAtPosition(position);
-                Feed.getUserFilter().setStatus(Status.match(item));
-
-                ((Feed) Feed.getContext()).updateFilter();
-
-                sharedPref = getApplicationContext().getSharedPreferences(PRER_FILE_NAME, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-
-                editor.putInt(STAT_SEL_POS, position);
-                editor.commit();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
         clearFilters.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +63,24 @@ public class FilterChooser extends AppCompatActivity{
         applyFilters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Language lang = Language.match((String) languageSel.getSelectedItem());
+                UserType type = UserType.match((String) typeSel.getSelectedItem());
+                Status status = Status.match((String) statusSel.getSelectedItem());
+
+                Feed.getUserFilter().setLanguage(lang);
+                Feed.getUserFilter().setType(type);
+                Feed.getUserFilter().setStatus(status);
+
+                ((Feed) Feed.getContext()).updateFilter();
+
+                sharedPref = getApplicationContext().getSharedPreferences(PRER_FILE_NAME, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putInt(LANG_SEL_POS, languageSel.getSelectedItemPosition());
+                editor.putInt(TYPE_SEL_POS, typeSel.getSelectedItemPosition());
+                editor.putInt(STAT_SEL_POS, statusSel.getSelectedItemPosition());
+                editor.apply();
+
                 startActivity(new Intent(getApplicationContext(), Feed.class));
             }
         });

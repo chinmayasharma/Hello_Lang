@@ -2,12 +2,14 @@ package jackah2.hellolangfeed;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,12 @@ public class Feed extends AppCompatActivity {
     private final List<User> users = new ArrayList<>();
     private final List<User> filteredUsers = new ArrayList<>();
     private static final UserFilter userFilter = new UserFilter();
-    FeedAdapter feedAdapter;
-    ListView listView;
-    Button filterUsersButton;
+
+    private FeedAdapter feedAdapter;
+    private ListView listView;
+    private Button filterUsersButton, editProfileButton;
+
+    private TextView nameText, languageText, statusText, typeText;
 
     public static final String USER_OBJECT = "user_object";
     public static final String FILTER_OBJECT = "filter_object";
@@ -32,6 +37,13 @@ public class Feed extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         _context = this;
+
+        nameText = (TextView) findViewById(R.id.personal_user_name);
+        languageText = (TextView) findViewById(R.id.personal_language);
+        typeText = (TextView) findViewById(R.id.personal_type);
+        statusText = (TextView) findViewById(R.id.personal_status);
+
+        applyUserOptions();
 
         feedAdapter = new FeedAdapter(this, filteredUsers);
 
@@ -66,7 +78,6 @@ public class Feed extends AppCompatActivity {
 
 
         filterUsersButton = (Button) findViewById(R.id.filter_users_button);
-        filterUsersButton.setText(R.string.filter_users_button);
         filterUsersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +92,14 @@ public class Feed extends AppCompatActivity {
             }
         });
 
+        editProfileButton = (Button) findViewById(R.id.edit_profile_button);
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileEditor.class));
+            }
+        });
+
         updateFilter();
     }
 
@@ -92,6 +111,22 @@ public class Feed extends AppCompatActivity {
         filteredUsers.clear();
         filteredUsers.addAll(userFilter.filter(users));
         feedAdapter.notifyDataSetChanged();
+    }
+
+    private void applyUserOptions(){
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(ProfileEditor.PRER_FILE_NAME, MODE_PRIVATE);
+        String name = pref.getString(ProfileEditor.NAME, ProfileEditor.DEF_NAME);
+        Language language = Language.match(pref.getString(ProfileEditor.LANGUAGE, ProfileEditor.DEF_NAME));
+        UserType type = UserType.match(pref.getString(ProfileEditor.TYPE, ProfileEditor.DEF_TYPE));
+        Status status = Status.match(pref.getString(ProfileEditor.STATUS, ProfileEditor.DEF_STAT));
+
+        nameText.setText(name);
+        if (language != null) languageText.setText(language.toString());
+        if (type != null) typeText.setText(type.toString());
+        if (status != null) {
+            statusText.setText(status.toString());
+            statusText.setTextColor(status.getColor());
+        }
     }
 
     public static UserFilter getUserFilter(){

@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserActvity" />
-        <activity android:name=".FilterChooser"></activity>
+        <activity android:name=".FilterChooser" />
+        <activity android:name=".ProfileEditor"></activity>
     </application>
 
 </manifest>
