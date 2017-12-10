@@ -31,12 +31,17 @@ public class Feed extends AppCompatActivity {
     public static final String USER_OBJECT = "user_object";
     public static final String FILTER_OBJECT = "filter_object";
 
+    private Caller caller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
         _context = this;
+
+        this.caller = new Caller(this);
 
         nameText = (TextView) findViewById(R.id.personal_user_name);
         languageText = (TextView) findViewById(R.id.personal_language);
@@ -135,7 +140,7 @@ public class Feed extends AppCompatActivity {
 
     public List<User> getUsers(){
         // TODO
-        // Implement method to get all users of app
+        // Implement method to get users of app from database
 
         return null;
     }
