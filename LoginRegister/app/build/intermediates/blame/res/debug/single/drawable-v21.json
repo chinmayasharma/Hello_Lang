@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/drawable-v21/notification_action_background.xml"
+    }
+]
