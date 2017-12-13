@@ -1,13 +1,7 @@
-# Hello_Lang
+Hello Lang
 
-Todo:
-  - Make way to create / change your own profile
-  - Change status to "be available"
-  - Multiple "swiping" pages
-    - Settings, menu, etc.
-  - Change your picture, name, language, type, description, etc.
+Description: A solution for language learners who need speaking practice. Allows users to call native speakers and have a discussion about a topic of their choice, catered towards their speaking ability.
 
-Bugs:
-  - Filter doesn't allow multiple filters at once
-  - Filters clear after you go back to edit them
-  - Load current filters when you go to the filters screen
+Documentation: Main apps is inside the Hello Lang folder. The Login Register folder contains contents of stand-alone login app (Already integrated into the app). The sinch-rtc-sample-calling folder contains contents of stand-alone Sinch API demo calling app (Already integrated into the app).
+
+To-Do: Integrate back-end database (DatabaseFiles folder) into main app. Add additional user functionality such as rating system and a payscale.
