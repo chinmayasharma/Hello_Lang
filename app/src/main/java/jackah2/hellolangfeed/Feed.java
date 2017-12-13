@@ -1,9 +1,13 @@
 package jackah2.hellolangfeed;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +35,7 @@ public class Feed extends AppCompatActivity {
     public static final String USER_OBJECT = "user_object";
     public static final String FILTER_OBJECT = "filter_object";
 
-    private Caller caller;
+    private static Caller caller = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +43,17 @@ public class Feed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
+        requestPerm(Manifest.permission.INTERNET);
+        requestPerm(Manifest.permission.ACCESS_NETWORK_STATE);
+        requestPerm(Manifest.permission.RECORD_AUDIO);
+        requestPerm(Manifest.permission.MODIFY_AUDIO_SETTINGS);
+
         _context = this;
 
-        this.caller = new Caller(this);
+        if (caller == null) {
+            caller = new Caller(this, "caller2");
+        }
+        caller.getClient().checkManifest();
 
         nameText = (TextView) findViewById(R.id.personal_user_name);
         languageText = (TextView) findViewById(R.id.personal_language);
@@ -67,19 +79,22 @@ public class Feed extends AppCompatActivity {
             }
         });
 
-        users.add(new User("Jack", Language.ENGLISH, UserType.STUDENT, Status.ONLINE));
-        users.add(new User("Bob", Language.MANDARIN, UserType.STUDENT, Status.OFFLINE));
-        users.add(new User("Nick", Language.SPANISH, UserType.STUDENT, Status.OFFLINE));
-        users.add(new User("Charlie", Language.FRENCH, UserType.TEACHER, Status.ONLINE));
-        users.add(new User("user1", Language.ENGLISH, UserType.TEACHER, Status.OFFLINE));
-        users.add(new User("user2", Language.FRENCH, UserType.TEACHER, Status.ONLINE));
-        users.add(new User("user3", Language.MANDARIN, UserType.TEACHER, Status.ONLINE));
-        users.add(new User("user4", Language.SPANISH, UserType.TEACHER, Status.ONLINE));
-        users.add(new User("user5", Language.ENGLISH, UserType.STUDENT, Status.ONLINE));
-        users.add(new User("user6", Language.MANDARIN, UserType.STUDENT, Status.OFFLINE));
-        users.add(new User("user7", Language.FRENCH, UserType.STUDENT, Status.ONLINE));
-        users.add(new User("user8", Language.SPANISH, UserType.STUDENT, Status.OFFLINE));
-        users.add(new User("user9", Language.ENGLISH, UserType.STUDENT, Status.ONLINE));
+        users.add(new User("User", Language.ENGLISH, UserType.STUDENT, Status.ONLINE));
+        //users.add(new User("Bob", Language.MANDARIN, UserType.STUDENT, Status.OFFLINE));
+        //users.add(new User("Nick", Language.SPANISH, UserType.STUDENT, Status.OFFLINE));
+        //users.add(new User("Charlie", Language.FRENCH, UserType.TEACHER, Status.ONLINE));
+        //users.add(new User("Debra", Language.SPANISH, UserType.TEACHER, Status.ONLINE));
+        //users.add(new User("John", Language.SPANISH, UserType.TEACHER, Status.ONLINE));
+        //users.add(new User("Bob", Language.SPANISH, UserType.TEACHER, Status.ONLINE));
+        //users.add(new User("Tony", Language.SPANISH, UserType.TEACHER, Status.OFFLINE));
+        //users.add(new User("user1", Language.ENGLISH, UserType.TEACHER, Status.OFFLINE));
+        //users.add(new User("user2", Language.FRENCH, UserType.TEACHER, Status.ONLINE));
+        //users.add(new User("user3", Language.MANDARIN, UserType.TEACHER, Status.ONLINE));
+        //users.add(new User("user5", Language.ENGLISH, UserType.STUDENT, Status.ONLINE));
+        //users.add(new User("user6", Language.MANDARIN, UserType.STUDENT, Status.OFFLINE));
+        //users.add(new User("user7", Language.FRENCH, UserType.STUDENT, Status.ONLINE));
+        //users.add(new User("user8", Language.SPANISH, UserType.STUDENT, Status.OFFLINE));
+        //users.add(new User("user9", Language.ENGLISH, UserType.STUDENT, Status.ONLINE));
 
 
         filterUsersButton = (Button) findViewById(R.id.filter_users_button);
@@ -106,6 +121,17 @@ public class Feed extends AppCompatActivity {
         });
 
         updateFilter();
+    }
+
+    public static Caller getCaller() {
+        return caller;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        caller.getClient().stopListeningOnActiveConnection();
+        caller.getClient().terminate();
     }
 
     public static Context getContext(){
@@ -145,5 +171,33 @@ public class Feed extends AppCompatActivity {
         return null;
     }
 
+    private static int requestCode = 40;
+    private void requestPerm(String permission) {
+        if (ContextCompat.checkSelfPermission(this,
+                permission)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    permission)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{permission},
+                        requestCode++);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+    }
 
 }

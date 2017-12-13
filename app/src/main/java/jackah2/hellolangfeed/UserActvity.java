@@ -3,9 +3,14 @@ package jackah2.hellolangfeed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class UserActvity extends AppCompatActivity {
+
+
+    Button callButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,12 @@ public class UserActvity extends AppCompatActivity {
         indType.setText(user.getType().toString());
         indDescription.setText(user.getDescription());
 
-
+        callButton = (Button) findViewById(R.id.call_user_button);
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Feed.getCaller().call("caller1");
+            }
+        });
     }
 }
