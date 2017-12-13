@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/rishav/.android/build-cache/33efb06604acdc09c29fb12da61bcfd135193cd1/output/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

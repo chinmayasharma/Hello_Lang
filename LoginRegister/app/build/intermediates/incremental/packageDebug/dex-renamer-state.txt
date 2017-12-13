@@ -1,0 +1,7 @@
+#Wed Oct 18 14:02:42 CDT 2017
+base.0=/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1c9ca1b5fbe48edc7a2f7228376a21498daaa641
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6443940c05c5db1175ff0f8e8342de093fa6ec36/classes.dex
+base.1=/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6443940c05c5db1175ff0f8e8342de093fa6ec36
+file.0=/Users/rishav/AndroidStudioProjects/LoginRegister/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1c9ca1b5fbe48edc7a2f7228376a21498daaa641/classes.dex
