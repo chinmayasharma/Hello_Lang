@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HolaLang Feed</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+    <string name="french">Francés</string>
+    <string name="mandarin">Mandarín</string>
+    <string name="online">En línea</string>
+    <string name="offline">Desconectado</string>
+    <string name="teacher">Maestro</string>
+    <string name="student">Estudiante</string>
+
+</resources>

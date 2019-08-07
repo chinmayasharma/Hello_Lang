@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:label="@string/Feed_activity_name"
+    tools:context="jackah2.hellolangfeed.Feed">
+
+    <Button
+        android:id="@+id/filter_users_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="99dp"
+        android:text="@string/filter_users_button" />
+
+    <ListView
+        android:id="@+id/user_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/filter_users_button" />
+
+    <ImageView
+        android:id="@+id/personal_profile_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/default_picture"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/personal_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/personal_profile_picture"
+        android:layout_toRightOf="@+id/personal_profile_picture"
+        android:text="@string/default_username"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/edit_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/user_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/edit_profile_button" />
+
+    <TextView
+        android:id="@+id/personal_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/default_type"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/personal_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personal_user_name"
+        android:layout_toEndOf="@+id/personal_profile_picture"
+        android:layout_toRightOf="@+id/personal_profile_picture"
+        android:text="@string/default_language"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/personal_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personal_language"
+        android:layout_toEndOf="@+id/personal_profile_picture"
+        android:layout_toRightOf="@+id/personal_profile_picture"
+        android:text="@string/default_status"
+        android:textSize="22sp" />
+</RelativeLayout>
